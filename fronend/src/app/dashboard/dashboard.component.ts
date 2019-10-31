@@ -13,9 +13,9 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.requiredLogin();
     this.userService.getAll().subscribe((user: User[])=>{
       this.user = user;
-      //console.log(this.user);
     })
   }
   createOrUpdateUser(form){
@@ -25,10 +25,7 @@ export class DashboardComponent implements OnInit {
         console.log("User updated" , user);
       });
     }else{
-      //console.log(form.value);
        this.userService.createUser(form.value).subscribe((user: User)=>{
-        //console.log(user);
-        //console.log("User created, ", user);
       });
     }
   }

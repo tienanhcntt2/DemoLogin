@@ -13,7 +13,7 @@ if(isset($postdata) && !empty($postdata)){
   $rows = mysqli_fetch_row($result);
   if($rows){
     //http_response_code(201);
-    http_response_code(204);
+   return http_response_code(204);
   }
   else{
     return http_response_code(422);

@@ -3,7 +3,7 @@ require 'database.php';
 
 // Get the posted data.
 $postdata = file_get_contents("php://input");
-var_dump($postdata); die ('1221');
+//var_dump($postdata); die ('1221');
 if(isset($postdata) && !empty($postdata)){
   $request = json_decode($postdata);
   //var_dump($request); die;
