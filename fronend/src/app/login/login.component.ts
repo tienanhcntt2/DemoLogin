@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Route, Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   user: User[];
   selectedUser:  User  = { id :  null , username: null, password:  null};
   formLogin: FormGroup
-  constructor(private router: Router, private form: FormBuilder, private userService : UserService) { }
+  constructor(private router: Router, private form: FormBuilder, private userService : UserService, private aciv: ActivatedRoute) { }
 
   ngOnInit() {
     this.formLogin = this.form.group({
@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
   onLogin(data){
     //console.log(data);
     this.userService.loginUser(data).subscribe((user: User)=>{
-      this.router.navigate(['/dashboard']);
-      localStorage.setItem('isLogin', "true");
+      this.router.navigate(['/dashboard'],{relativeTo : this.aciv});
+      //localStorage.setItem('isLogin', "true");
       localStorage.setItem('token', data.username);
-      var token = localStorage.getItem('token');
-      console.log(token);
+      //this.header.ngOnInit();
     });
   }
   selectUser(user: User){

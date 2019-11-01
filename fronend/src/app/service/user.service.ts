@@ -19,14 +19,12 @@ export class UserService {
     return this.httpClient.post<User>(`${this.PHP_API_SERVER}/api/create.php`, user);
   }
   updateUser(user: User){
-    //console.log(user);
     return this.httpClient.put<User>(`${this.PHP_API_SERVER}/api/update.php`, user); 
   }
   deleteUser(id: number){
     return this.httpClient.delete<User>(`${this.PHP_API_SERVER}/api/delete.php/?id=${id}`);
   }
   loginUser(user: User){
-    //console.log(user);
     return this.httpClient.post<User>(`${this.PHP_API_SERVER}/api/login.php`, user);
   }
   requiredLogin(){
